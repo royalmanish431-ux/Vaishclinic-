@@ -65,25 +65,25 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
     <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl border border-slate-200 transition-all">
         {/* Header */}
-        <div className="bg-teal-900 text-white p-5 flex items-center justify-between">
+        <div className="bg-[#0b192c] text-white p-5 flex items-center justify-between border-b border-teal-900/60">
           <div className="flex items-center gap-3">
             <img
               src="/assets/aistudio/WhatsApp_Image_2026-10-23_at_12.22.00_AM_880788dc.jpeg"
               alt="Dr. Vaish's Clinic"
-              className="w-10 h-10 rounded-full object-contain bg-white p-0.5 border border-emerald-300"
+              className="w-10 h-10 rounded-full object-contain bg-white p-0.5 border border-teal-400"
             />
             <div>
               <h3 className="text-base sm:text-lg font-bold leading-tight">
                 {isSubmitted ? 'Appointment Requested' : 'Book a Consultation Slot'}
               </h3>
-              <p className="text-xs text-teal-200 mt-0.5">
-                Dr. Vaish&apos;s Dental & Physiotherapy Clinic · Chandpur, UP
+              <p className="text-xs text-teal-300 mt-0.5">
+                Dr. Vaish&apos;s Dental &amp; Physiotherapy Clinic · Chandpur, UP
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg text-teal-200 hover:text-white hover:bg-teal-800 transition-colors"
+            className="p-1 rounded-lg text-teal-200 hover:text-white hover:bg-slate-800 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -174,10 +174,10 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                           service: '',
                         })
                       }
-                      className={`py-2 px-2 rounded-lg text-xs font-semibold text-center transition-all ${
+                      className={`py-2 px-2 rounded-xl text-xs font-bold text-center transition-all ${
                         formData.specialty === dept.id
-                          ? 'bg-teal-700 text-white shadow-sm'
-                          : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                          ? 'bg-[#00897b] text-white shadow-xs'
+                          : 'bg-teal-50/70 border border-teal-200/60 text-slate-700 hover:bg-teal-100/60'
                       }`}
                     >
                       {dept.label}
@@ -197,8 +197,11 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                   className="w-full border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-teal-600"
                 >
                   <option value="any">Any Available Specialist</option>
-                  <option value="dr-keerthi">Dr. Keerthi Prathi (Dental Surgeon, 15+ Yrs Exp)</option>
-                  <option value="dr-badrinath">Dr. Badrinath Prathi, PT (Sports Physiotherapist, ICC Coordinator)</option>
+                  {DOCTORS.map((doc) => (
+                    <option key={doc.id} value={doc.id}>
+                      {doc.name} ({doc.badge === 'Dental' ? 'B.D.S. · Dental' : 'B.P.T. · Physiotherapy'})
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -301,13 +304,13 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-3 bg-teal-700 hover:bg-teal-800 active:scale-98 text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow-md transition-all flex items-center justify-center gap-2"
+                  className="w-full py-3.5 bg-[#00897b] hover:bg-[#00796b] active:scale-98 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md shadow-teal-700/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Calendar className="w-4 h-4" />
                   <span>Request Consultation Slot</span>
                 </button>
                 <p className="text-[11px] text-center text-slate-500 mt-2">
-                  Or call directly at <a href={`tel:${CLINIC_INFO.mobileRaw}`} className="font-semibold text-teal-700 hover:underline">{CLINIC_INFO.mobile}</a>
+                  Or call directly at <a href={`tel:${CLINIC_INFO.mobileRaw}`} className="font-bold text-[#00897b] hover:underline">{CLINIC_INFO.mobile}</a>
                 </p>
               </div>
             </form>

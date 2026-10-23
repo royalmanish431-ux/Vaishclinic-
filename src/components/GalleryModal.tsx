@@ -72,7 +72,7 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({
         {/* Top bar */}
         <div className="p-3 sm:p-4 px-4 sm:px-6 bg-slate-900 border-b border-slate-800 flex items-center justify-between text-white">
           <div className="pr-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-emerald-400">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-teal-300">
               {currentItem.categoryLabel} ({currentIndex + 1} of {GALLERY_ITEMS.length})
             </span>
             <h4 className="text-sm sm:text-base font-bold text-white leading-tight line-clamp-1">

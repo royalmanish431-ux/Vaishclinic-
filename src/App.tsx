@@ -20,7 +20,8 @@ import { ServiceDetailsModal } from './components/ServiceDetailsModal';
 import { GalleryModal } from './components/GalleryModal';
 
 import { Doctor, ServiceItem, GalleryItem } from './types/clinic';
-import { DOCTORS, GALLERY_ITEMS } from './data/clinicData';
+import { DOCTORS, GALLERY_ITEMS, CLINIC_INFO } from './data/clinicData';
+import { Calendar, Phone } from 'lucide-react';
 
 export default function App() {
   // Google Maps Platform quota warning banner state
@@ -99,7 +100,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans flex flex-col selection:bg-teal-700 selection:text-white">
+    <div className="min-h-screen bg-white text-slate-900 font-sans flex flex-col selection:bg-[#00897b] selection:text-white">
       {/* Demo Key Quota Notification Banner */}
       {isQuotaExceeded && (
         <div className="bg-amber-50 border-b border-amber-200 text-amber-900 px-4 py-2.5 text-xs md:text-sm text-center sticky top-0 z-50 shadow-sm">
@@ -195,6 +196,20 @@ export default function App() {
         }}
         onSelect={(item) => setSelectedGalleryItem(item)}
       />
+
+      {/* Floating Action Button matching screenshot */}
+      <div className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-2.5">
+        <button
+          onClick={() => handleOpenBooking('dental')}
+          className="flex items-center gap-2 bg-[#00897b] hover:bg-[#00796b] text-white p-3.5 sm:px-5 sm:py-3.5 rounded-full shadow-xl shadow-teal-900/30 active:scale-95 transition-all cursor-pointer group"
+          title="Book Appointment"
+        >
+          <Calendar className="w-5 h-5 group-hover:scale-110 transition-transform" />
+          <span className="hidden sm:inline-block font-bold text-xs tracking-wide">
+            Book Appointment
+          </span>
+        </button>
+      </div>
     </div>
   );
 }

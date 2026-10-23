@@ -29,7 +29,11 @@ export const VisitUs: React.FC<VisitUsProps> = ({ onOpenBooking }) => {
     lng: CLINIC_INFO.coordinates?.lng || 78.265361,
   };
 
-  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${clinicPosition.lat},${clinicPosition.lng}`;
+  const directionsUrl =
+    CLINIC_INFO.googleMapsDirectionsUrl ||
+    `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+      "Dr. Vaish's Dental and physiotherapy clinic, sato imli bazar, bazaria, Chandpur, Uttar Pradesh 246725"
+    )}`;
 
   const handleCopyPlusCode = () => {
     navigator.clipboard.writeText('47Q7+CWQ, Chandpur, Uttar Pradesh');
@@ -38,15 +42,15 @@ export const VisitUs: React.FC<VisitUsProps> = ({ onOpenBooking }) => {
   };
 
   return (
-    <section id="contact" className="py-20 lg:py-24 bg-white border-b border-slate-100">
+    <section id="contact" className="py-20 lg:py-24 bg-gradient-to-b from-white via-teal-50/15 to-white border-b border-teal-100/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="text-xs font-bold uppercase tracking-wider text-teal-700 block mb-2">
-            VISIT OUR CLINIC
+          <span className="text-xs font-extrabold uppercase tracking-widest text-[#00897b] block mb-2">
+            LOCATION &amp; EASY REACH
           </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
-            We Value Your Time & Health
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
+            Visit Our Clinic in Chandpur
           </h2>
           <p className="mt-2 text-base sm:text-lg font-medium text-slate-600">
             Conveniently located at Sato Imli Bazar, Bazaria, Chandpur. Get easy turn-by-turn directions.
@@ -56,15 +60,15 @@ export const VisitUs: React.FC<VisitUsProps> = ({ onOpenBooking }) => {
         {/* 2-Column Split: Clinic Contact Info & Interactive Map */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch max-w-6xl mx-auto">
           {/* Left Details Column */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-6 bg-slate-50/70 p-6 sm:p-8 rounded-2xl border border-slate-200">
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-6 bg-white p-6 sm:p-8 rounded-3xl border border-teal-100 shadow-sm">
             <div className="space-y-6">
               {/* Address item */}
               <div className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center shrink-0 mt-0.5 border border-teal-200">
-                  <MapPin className="w-5 h-5 text-teal-700" />
+                <div className="w-11 h-11 rounded-2xl bg-teal-50 text-[#00897b] flex items-center justify-center shrink-0 mt-0.5 border border-teal-200">
+                  <MapPin className="w-5 h-5 text-[#00897b]" />
                 </div>
                 <div>
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
+                  <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-1">
                     Clinic Address
                   </h3>
                   <p className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
@@ -73,13 +77,13 @@ export const VisitUs: React.FC<VisitUsProps> = ({ onOpenBooking }) => {
                   
                   {/* Plus code badge */}
                   <div className="mt-2.5 flex items-center gap-2">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-teal-50 border border-teal-200 text-teal-800 font-mono text-xs font-semibold">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-teal-50 border border-teal-200 text-[#00796b] font-mono text-xs font-bold">
                       Plus Code: 47Q7+CWQ
                     </span>
                     <button
                       onClick={handleCopyPlusCode}
                       title="Copy Plus Code"
-                      className="p-1 rounded hover:bg-slate-200 text-slate-600 transition-colors"
+                      className="p-1 rounded-lg hover:bg-teal-50 text-slate-600 hover:text-[#00897b] transition-colors"
                       type="button"
                     >
                       {copiedPlusCode ? (
@@ -92,59 +96,59 @@ export const VisitUs: React.FC<VisitUsProps> = ({ onOpenBooking }) => {
 
                   {/* Exact Coordinates */}
                   <p className="text-[11px] font-mono text-slate-500 mt-1.5">
-                    GPS: 29°08&apos;19.1&quot;N 78°15&apos;55.3&quot;E ({clinicPosition.lat.toFixed(6)}, {clinicPosition.lng.toFixed(6)})
+                    GPS: 29°08&apos;19.1&quot;N 78°15&apos;55.3&quot;E
                   </p>
                 </div>
               </div>
 
               {/* Telephone item */}
               <div className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center shrink-0 mt-0.5 border border-teal-200">
-                  <Phone className="w-5 h-5 text-teal-700" />
+                <div className="w-11 h-11 rounded-2xl bg-teal-50 text-[#00897b] flex items-center justify-center shrink-0 mt-0.5 border border-teal-200">
+                  <Phone className="w-5 h-5 text-[#00897b]" />
                 </div>
                 <div>
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
-                    Appointments & Inquiries
+                  <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-1">
+                    Appointments &amp; Inquiries
                   </h3>
                   <a
                     href={`tel:${CLINIC_INFO.mobileRaw}`}
-                    className="text-base font-bold text-teal-800 hover:text-teal-900 transition-colors"
+                    className="text-base font-black text-[#00897b] hover:text-[#00796b] transition-colors"
                   >
                     {CLINIC_INFO.mobile}
                   </a>
                   <p className="text-xs text-slate-500 mt-0.5">
-                    Phone calls, WhatsApp booking & emergency consultations
+                    Phone calls, WhatsApp booking &amp; emergency consultations
                   </p>
                 </div>
               </div>
 
               {/* Consultation Hours */}
               <div className="flex items-start gap-3.5">
-                <div className="w-10 h-10 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center shrink-0 mt-0.5 border border-teal-200">
-                  <Clock className="w-5 h-5 text-teal-700" />
+                <div className="w-11 h-11 rounded-2xl bg-teal-50 text-[#00897b] flex items-center justify-center shrink-0 mt-0.5 border border-teal-200">
+                  <Clock className="w-5 h-5 text-[#00897b]" />
                 </div>
                 <div>
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
+                  <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-1">
                     Consultation Hours
                   </h3>
                   <p className="text-xs font-medium text-slate-700">
-                    <span className="font-semibold text-slate-900">Mon - Sat:</span> {CLINIC_INFO.workingHours.weekdays}
+                    <span className="font-bold text-slate-900">Mon - Sat:</span> {CLINIC_INFO.workingHours.weekdays}
                   </p>
                   <p className="text-xs font-medium text-slate-700 mt-1">
-                    <span className="font-semibold text-slate-900">Sunday:</span> {CLINIC_INFO.workingHours.sunday}
+                    <span className="font-bold text-slate-900">Sunday:</span> {CLINIC_INFO.workingHours.sunday}
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Quick Action Buttons */}
-            <div className="pt-4 border-t border-slate-200/80 space-y-2.5">
+            <div className="pt-4 border-t border-slate-100 space-y-2.5">
               <div className="flex flex-wrap items-center gap-3">
                 <a
                   href={directionsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 bg-teal-700 hover:bg-teal-800 text-white font-semibold text-sm px-4 py-2.5 rounded-lg shadow-sm transition-all"
+                  className="flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 bg-[#00897b] hover:bg-[#00796b] text-white font-bold text-sm px-4 py-3 rounded-xl shadow-md shadow-teal-700/20 transition-all cursor-pointer"
                 >
                   <Navigation className="w-4 h-4" />
                   <span>Get Directions</span>
@@ -152,16 +156,16 @@ export const VisitUs: React.FC<VisitUsProps> = ({ onOpenBooking }) => {
 
                 <a
                   href={`tel:${CLINIC_INFO.mobileRaw}`}
-                  className="inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm px-4 py-2.5 rounded-lg shadow-sm transition-all"
+                  className="inline-flex items-center justify-center gap-2 bg-[#0b192c] hover:bg-slate-800 text-white font-bold text-sm px-4 py-3 rounded-xl shadow-xs transition-all cursor-pointer"
                 >
-                  <Phone className="w-4 h-4" />
+                  <Phone className="w-4 h-4 text-teal-300" />
                   <span>Call Doctor</span>
                 </a>
               </div>
 
               <button
                 onClick={onOpenBooking}
-                className="w-full inline-flex items-center justify-center gap-2 text-sm font-semibold text-teal-800 hover:text-teal-900 bg-teal-50/80 hover:bg-teal-100 border border-teal-200 py-2.5 px-4 rounded-lg transition-colors"
+                className="w-full inline-flex items-center justify-center gap-2 text-sm font-bold text-[#00796b] hover:text-teal-950 bg-teal-50 hover:bg-teal-100/70 border border-teal-200 py-2.5 px-4 rounded-xl transition-colors cursor-pointer"
               >
                 <span>Book Appointment Online</span>
                 <ArrowRight className="w-4 h-4" />
@@ -170,9 +174,9 @@ export const VisitUs: React.FC<VisitUsProps> = ({ onOpenBooking }) => {
           </div>
 
           {/* Right Visible Map Column */}
-          <div className="lg:col-span-7 bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col min-h-[460px]">
+          <div className="lg:col-span-7 bg-white rounded-3xl border border-teal-100 overflow-hidden shadow-sm flex flex-col min-h-[460px]">
             {/* Top Bar for Map */}
-            <div className="p-3.5 sm:p-4 bg-slate-900 text-white flex items-center justify-between z-10 shrink-0">
+            <div className="p-3.5 sm:p-4 bg-[#0b192c] text-white flex items-center justify-between z-10 shrink-0">
               <div className="flex items-center gap-3">
                 <img
                   src={CLINIC_INFO.logo}
@@ -184,7 +188,7 @@ export const VisitUs: React.FC<VisitUsProps> = ({ onOpenBooking }) => {
                     <span className="text-xs sm:text-sm font-bold text-white leading-tight">
                       {CLINIC_INFO.fullName}
                     </span>
-                    <span className="inline-block px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    <span className="inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-teal-500/20 text-teal-300 border border-teal-400/30">
                       Live Map
                     </span>
                   </div>
@@ -199,7 +203,7 @@ export const VisitUs: React.FC<VisitUsProps> = ({ onOpenBooking }) => {
                   href={CLINIC_INFO.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-white hover:text-teal-200 bg-teal-700 hover:bg-teal-600 px-3 py-1.5 rounded-lg shadow-sm transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-white hover:text-teal-200 bg-[#00897b] hover:bg-[#00796b] px-3.5 py-2 rounded-xl shadow-xs transition-colors"
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   <span className="hidden sm:inline">Google Maps</span>
@@ -229,7 +233,7 @@ export const VisitUs: React.FC<VisitUsProps> = ({ onOpenBooking }) => {
                     onClick={() => setIsInfoOpen(true)}
                   >
                     <Pin
-                      background="#0f766e"
+                      background="#00897b"
                       borderColor="#ffffff"
                       glyphColor="#ffffff"
                       scale={1.2}
@@ -243,27 +247,27 @@ export const VisitUs: React.FC<VisitUsProps> = ({ onOpenBooking }) => {
                       onCloseClick={() => setIsInfoOpen(false)}
                       headerContent={
                         <div className="font-bold text-xs text-teal-900 flex items-center gap-1.5">
-                          <MapPin className="w-3.5 h-3.5 text-teal-700" />
-                          <span>Dr. Vaish&apos;s Clinic</span>
+                          <MapPin className="w-3.5 h-3.5 text-[#00897b]" />
+                          <span>Dr. Vaish&apos;s Dental &amp; Physiotherapy Clinic</span>
                         </div>
                       }
                     >
-                      <div className="p-1 max-w-[240px] text-slate-800">
-                        <p className="text-xs font-semibold text-slate-900 leading-snug">
-                          Dental & Physiotherapy Care
+                      <div className="p-1 max-w-[260px] text-slate-800">
+                        <p className="text-xs font-bold text-slate-900 leading-snug">
+                          Dr. Vaish&apos;s Dental and physiotherapy clinic
                         </p>
                         <p className="text-[11px] text-slate-600 mt-1 leading-normal">
-                          Sato Imli Bazar, Bazaria, Chandpur, UP - 246725
+                          Sato Imli Bazar, Bazaria, Chandpur, Uttar Pradesh 246725
                         </p>
                         <div className="mt-2.5 pt-2 border-t border-slate-200 flex items-center justify-between gap-2">
-                          <span className="text-[10px] font-mono text-teal-800 font-bold bg-teal-50 px-1.5 py-0.5 rounded border border-teal-200">
+                          <span className="text-[10px] font-mono text-[#00796b] font-bold bg-teal-50 px-2 py-0.5 rounded-full border border-teal-200">
                             47Q7+CWQ
                           </span>
                           <a
                             href={directionsUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-[11px] font-bold text-teal-700 hover:text-teal-900"
+                            className="inline-flex items-center gap-1 text-[11px] font-bold text-[#00897b] hover:text-[#00796b]"
                           >
                             <span>Directions</span>
                             <ArrowRight className="w-3 h-3" />
@@ -276,7 +280,7 @@ export const VisitUs: React.FC<VisitUsProps> = ({ onOpenBooking }) => {
               </APIProvider>
 
               {/* Floating Quick Action Overlay */}
-              <div className="absolute bottom-3 left-3 z-10 bg-white/95 backdrop-blur-sm px-3 py-2 rounded-lg shadow-md border border-slate-200 flex items-center gap-2.5 text-xs">
+              <div className="absolute bottom-3 left-3 z-10 bg-white/95 backdrop-blur-sm px-3.5 py-2 rounded-xl shadow-md border border-teal-100 flex items-center gap-2.5 text-xs">
                 <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
                 <span className="text-slate-700 font-medium">
                   29°08&apos;19.1&quot;N 78°15&apos;55.3&quot;E
@@ -286,7 +290,7 @@ export const VisitUs: React.FC<VisitUsProps> = ({ onOpenBooking }) => {
                   href={directionsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-bold text-teal-700 hover:text-teal-900 inline-flex items-center gap-1"
+                  className="font-bold text-[#00897b] hover:text-[#00796b] inline-flex items-center gap-1"
                 >
                   <Navigation className="w-3 h-3" />
                   <span>Navigate</span>
@@ -297,7 +301,7 @@ export const VisitUs: React.FC<VisitUsProps> = ({ onOpenBooking }) => {
             {/* Bottom Footer Information Bar */}
             <div className="p-3 bg-slate-50 border-t border-slate-200 text-xs text-slate-600 flex flex-wrap items-center justify-between gap-2">
               <div className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-teal-700 shrink-0" />
+                <MapPin className="w-3.5 h-3.5 text-[#00897b] shrink-0" />
                 <span>Sato Imli Bazar, Bazaria, Chandpur, Bijnor (UP)</span>
               </div>
               <div className="flex items-center gap-3">
@@ -308,7 +312,7 @@ export const VisitUs: React.FC<VisitUsProps> = ({ onOpenBooking }) => {
                   href={CLINIC_INFO.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-teal-700 font-semibold hover:underline inline-flex items-center gap-1"
+                  className="text-[#00897b] font-semibold hover:underline inline-flex items-center gap-1"
                 >
                   <span>Open Full View</span>
                   <Maximize2 className="w-3 h-3" />
